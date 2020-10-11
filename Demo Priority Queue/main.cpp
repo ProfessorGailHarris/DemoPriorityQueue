@@ -24,10 +24,16 @@ template<typename T> void print_queue(T& q) {
 int main(int argc, const char * argv[]) {
     // insert code here...
     
+    printf( "Demo of using priority queue from the STL\n" );
+    printf( "Part 1 stores integers\n" );
+    printf( "Part 2 stores objects\n" );
+    printf( "\n" );
+    
+    printf( "Demo Part 1.\n\n" );
+
     // *************************
     // Code from: https://en.cppreference.com/w/cpp/container/priority_queue
     //
-    std::cout << "Hello, World!\n";
     
     std::priority_queue<int> q;
  
@@ -54,11 +60,12 @@ int main(int argc, const char * argv[]) {
     
     // end of copied code
     // *************************
-    
-    
+        
     // demo of priority queue with more complicated structures
     // with help from: https://www.geeksforgeeks.org/stl-priority-queue-for-structure-or-class/
     
+    printf( "\n\nDemo Part 2\n" );
+    printf( "Add these objects\n\n" );
     struct ComparePriority
     {
         bool operator()( A_Star_Node_Priority const& lhs, A_Star_Node_Priority const& rhs )
@@ -81,7 +88,8 @@ int main(int argc, const char * argv[]) {
     // declare some pointers
     Node *n;
     A_Star_Node_Priority *c;
-
+    
+    // load up the priority queue
     for( int i=0; i<SIZE; i++ )
     {
         n = new Node(labels[i]);
@@ -91,7 +99,7 @@ int main(int argc, const char * argv[]) {
         // pushing the object, not the pointer, onto the priority queue
         pq.push( *c );
     }
-    printf("finished pushing\n\n");
+    printf("finished adding to the queue\n\n");
 
     printf("Contents of Priority Queue:\n");
     while ( ! pq.empty() )
