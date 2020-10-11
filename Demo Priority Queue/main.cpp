@@ -10,6 +10,8 @@
 #include <queue>
 #include <vector>
 #include <iostream>
+
+#include "A_Star_Node_Priority.h"
  
 template<typename T> void print_queue(T& q) {
     while(!q.empty()) {
@@ -45,6 +47,10 @@ int main(int argc, const char * argv[]) {
         q3.push(n);
  
     print_queue(q3);
-         
+    
+    Node n = Node(4);
+    n.print();
+    printf( "\n");
+    
     return 0;
 }
