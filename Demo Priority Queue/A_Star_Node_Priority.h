@@ -16,12 +16,14 @@ class A_Star_Node_Priority
 public:
     
     // member variables
-    Node node;
+    Node *node;
     float priority;
     
     // constructors
-    A_Star_Node_Priority();
-    A_Star_Node_Priority( Node node_, float priority);
+    A_Star_Node_Priority( Node *node_, float priority);
+    
+    // useful functions
+    void print();
 };
 
 #endif /* A_Star_Node_Priority_h */

@@ -48,9 +48,14 @@ int main(int argc, const char * argv[]) {
  
     print_queue(q3);
     
-    Node n = Node(4);
-    n.print();
+    Node node = Node(4);
+    node.print();
     printf( "\n");
+    Node *n;
+    n = &node;
+    
+    A_Star_Node_Priority alpha = A_Star_Node_Priority( n, 3.3f );
+    alpha.print();
     
     return 0;
 }
