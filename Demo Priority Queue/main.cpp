@@ -13,6 +13,7 @@
 
 #include "A_Star_Node_Priority.h"
  
+// function for printing priority queue when it only contains integers
 template<typename T> void print_queue(T& q) {
     while(!q.empty()) {
         std::cout << q.top() << " ";
@@ -64,8 +65,10 @@ int main(int argc, const char * argv[]) {
     // demo of priority queue with more complicated structures
     // with help from: https://www.geeksforgeeks.org/stl-priority-queue-for-structure-or-class/
     
-    printf( "\n\nDemo Part 2\n" );
-    printf( "Add these objects\n\n" );
+    printf( "\n\nDemo Part 2\n\n" );
+    
+    // create struct with one operation, for use in the comparisons needed by the priority queue
+    // (might be better to have in a separate file and included?)
     struct ComparePriority
     {
         bool operator()( A_Star_Node_Priority const& lhs, A_Star_Node_Priority const& rhs )
@@ -74,35 +77,46 @@ int main(int argc, const char * argv[]) {
         }
     };
     
+    // create the priority queue using the Standard Template Library (STL)
+    // I chose double ended queue, rather than vector, for the container class
+    // I thought it might be better for performance, particularly for larger graphs
     std::priority_queue<A_Star_Node_Priority, std::deque<A_Star_Node_Priority>, ComparePriority > pq;
 
+    // set up some data for my testing:
+    
+    // create SIZE graph nodes and add them to the priority queue
     const int SIZE = 4;
-    // the labels for the nodes are 5, 2, 6 and 3
+
+    // the labels for the nodes are:
     int labels[SIZE] = { 2, 5, 6, 3 };
     
-    // the priorities for the nodes are 2.1, 5.5, 1.8, and 3.4
+    // the priorities for the nodes are:
     float priorities[SIZE] = { 5.5f, 7.1f, 1.8f, 3.4f };
     
     // add the above nodes and priorities into the priority queue
     
-    // declare some pointers
+    // declare some pointers for creating nodes and the objects to be put in the queue
     Node *n;
     A_Star_Node_Priority *c;
     
-    // load up the priority queue
+    printf( "Load up the priority queue...\n" );
     for( int i=0; i<SIZE; i++ )
     {
-        n = new Node(labels[i]);
+        n = new Node( labels[i] );
         c = new A_Star_Node_Priority( n, priorities[i] );
+        printf( "add " );
         c->print();
         
         // pushing the object, not the pointer, onto the priority queue
         pq.push( *c );
     }
-    printf("finished adding to the queue\n\n");
 
+    // Notice that the order of objects as they pop off the queue are
+    // lowest priority first.
+    // Change the comparison in the ComparePriority struct if you want to reverse the order
+    printf("\n");
     printf("Contents of Priority Queue:\n");
-    while ( ! pq.empty() )
+    while( !pq.empty() )
     {
         // get the top item and print it
         A_Star_Node_Priority c = pq.top();

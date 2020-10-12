@@ -19,11 +19,6 @@ Node::Node( int i_ )
     label = i_;
 }
 
-Node Node::operator=( Node n_ )
-{
-    return Node( n_.label );
-}
-
 void Node::print()
 {
     printf ("%i ", label );

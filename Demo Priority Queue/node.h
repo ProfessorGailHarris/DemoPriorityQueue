@@ -19,12 +19,8 @@ public:
     Node();
     Node( int i_ );
     
-    // copy operator
-    Node operator= ( Node n );
-    
     // useful functions
     void print();
-    
 };
 
 #endif /* NODE_H */
